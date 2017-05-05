@@ -16,6 +16,7 @@ RUN set -ex; \
         git \
         libffi-dev \
         libssl-dev \
+        unzip \
         curl; \
         apt-get -t jessie-backports -y --no-install-recommends install git; \
         rm -rf /var/lib/apt/lists/*; \
@@ -25,4 +26,7 @@ RUN set -ex; \
         tar -xz -C /tmp -f /tmp/docker-$VER.tgz; \
         rm /tmp/docker-$VER.tgz; \
         mv /tmp/docker/* /usr/bin; \
-        pip install --ignore-installed -U pip setuptools
+        pip install --ignore-installed -U pip setuptools; \
+        cd /opt && curl --insecure -OL https://sonarsource.bintray.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-3.0.0.702-linux.zip && \
+        unzip sonar-scanner-cli-3.0.0.702-linux.zip && rm sonar-scanner-cli-3.0.0.702-linux.zip && \
+        ln -s /opt/sonar-scanner-3.0.0.702-linux/bin/sonar-scanner /usr/bin/
