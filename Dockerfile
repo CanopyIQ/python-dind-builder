@@ -17,6 +17,7 @@ RUN set -ex; \
         libffi-dev \
         libssl-dev \
         unzip \
+        ssh \
         curl; \
         apt-get -t jessie-backports -y --no-install-recommends install git; \
         rm -rf /var/lib/apt/lists/*; \
