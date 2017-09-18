@@ -1,4 +1,4 @@
-FROM python:3-slim
+FROM python:3.6-slim
 
 RUN set -ex; \
         \
@@ -28,6 +28,6 @@ RUN set -ex; \
         rm /tmp/docker-$VER.tgz; \
         mv /tmp/docker/* /usr/bin; \
         pip install --ignore-installed -U pip setuptools; \
-        cd /opt && curl --insecure -OL https://sonarsource.bintray.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-3.0.0.702-linux.zip && \
-        unzip sonar-scanner-cli-3.0.0.702-linux.zip && rm sonar-scanner-cli-3.0.0.702-linux.zip && \
-        ln -s /opt/sonar-scanner-3.0.0.702-linux/bin/sonar-scanner /usr/bin/
+        cd /opt && curl --insecure -OL https://sonarsource.bintray.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-3.0.3.778-linux.zip && \
+        unzip sonar-scanner-cli-3.0.3.778-linux.zip && rm sonar-scanner-cli-3.0.3.778-linux.zip && \
+        ln -s /opt/sonar-scanner-3.0.3.778-linux/bin/sonar-scanner /usr/bin/
