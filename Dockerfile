@@ -1,8 +1,8 @@
-FROM python:3.7-slim
+FROM python:3.7-slim-stretch
 
 RUN set -ex; \
   \
-  echo "deb http://ftp.debian.org/debian jessie-backports main" > /etc/apt/sources.list.d/debian-backports.list; \
+  echo "deb http://deb.debian.org/debian stretch-backports main" > /etc/apt/sources.list.d/debian-backports.list; \
   apt-get update; \
   apt-get install -y --no-install-recommends \
   libxslt1-dev \
@@ -19,7 +19,7 @@ RUN set -ex; \
   unzip \
   ssh \
   curl; \
-  apt-get -t jessie-backports -y --no-install-recommends install git; \
+  apt-get -t stretch-backports -y --no-install-recommends install git; \
   rm -rf /var/lib/apt/lists/*; \
   \
   export DOCKER_VERSION=$(curl --silent --fail --retry 3 https://download.docker.com/linux/static/stable/x86_64/ | grep -o -e 'docker-[.0-9]*-ce\.tgz' | sort -r | head -n 1) \
