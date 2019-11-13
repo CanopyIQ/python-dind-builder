@@ -35,4 +35,4 @@ RUN set -ex; \
   && pip install --ignore-installed -U pip setuptools \
   && cd /opt && curl --insecure -OL https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.2.0.1873-linux.zip \
   && unzip sonar-scanner-cli-4.2.0.1873-linux.zip && rm sonar-scanner-cli-4.2.0.1873-linux.zip \
-  && ln -s /opt/sonar-scanner-cli-4.2.0.1873-linux/bin/sonar-scanner /usr/bin/
+  && ln -s /opt/sonar-scanner-4.2.0.1873-linux/bin/sonar-scanner /usr/bin/
