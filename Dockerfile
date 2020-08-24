@@ -37,7 +37,8 @@ RUN set -ex; \
   apt-get -t stretch-backports -y --no-install-recommends install git; \
   rm -rf /var/lib/apt/lists/*;
 
-RUN export DOCKER_VERSION=$(curl --silent --fail --retry 3 https://download.docker.com/linux/static/stable/x86_64/ | grep -o -e 'docker-[.0-9]*\.tgz' | sort -r | head -n 1) \
+# Sigh, needed to pin docker version
+RUN export DOCKER_VERSION=docker-19.03.8.tgz \
   && DOCKER_URL="https://download.docker.com/linux/static/stable/x86_64/${DOCKER_VERSION}" \
   && echo Docker URL: $DOCKER_URL \
   && curl --silent --show-error --location --fail --retry 3 --output /tmp/docker.tgz "${DOCKER_URL}" \
