@@ -19,6 +19,7 @@ RUN set -ex; \
   libffi-dev \
   libssl-dev \
   default-libmysqlclient-dev \
+  libpq-dev \
   zlib1g-dev \
   libbz2-dev \
   libreadline-dev \
