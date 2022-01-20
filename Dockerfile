@@ -1,6 +1,6 @@
 FROM python:3.7-slim-stretch
 
-ENV PYTHON_VERSION=3.7.12
+ENV PYTHON_VERSION=3.7.11
 
 RUN set -ex; \
   \
