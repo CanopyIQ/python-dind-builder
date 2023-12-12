@@ -1,6 +1,6 @@
 FROM python:slim-bullseye
 
-ENV PYTHON_VERSION=3.10.5
+ENV PYTHON_VERSION=3.12.1
 
 RUN set -ex; \
   \
