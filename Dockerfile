@@ -1,6 +1,4 @@
-FROM python:slim-bullseye
-
-ENV PYTHON_VERSION=3.12.1
+FROM python:3.12
 
 RUN set -ex; \
   \
@@ -48,15 +46,16 @@ RUN export DOCKER_VERSION=docker-20.10.9.tgz \
   && (docker version || true) \
   && pip install --ignore-installed -U pip setuptools
 
+# Fix for mongo...
+RUN wget http://archive.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.1_1.1.1f-1ubuntu2_amd64.deb && \
+    dpkg -i libssl1.1_1.1.1f-1ubuntu2_amd64.deb
+
 WORKDIR /root
 
-RUN git clone https://github.com/pyenv/pyenv.git .pyenv
+ENV UV_CACHE_DIR /root/uv_cache
 
-RUN git clone https://github.com/pyenv/pyenv-virtualenv.git .pyenv/plugins/pyenv-virtualenv 
+RUN pip install uv
 
-RUN echo 'export PYENV_ROOT="$HOME/.pyenv"' >> .bashrc && \
-  echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> .bashrc && \
-  echo 'eval "$(pyenv init -)"' >> .bashrc && \
-  echo 'eval "$(pyenv virtualenv-init -)"' >> .bashrc
+RUN chsh -s /bin/bash root
 
-RUN /bin/bash -c "source .bashrc && pyenv install -s ${PYTHON_VERSION}"
+ENTRYPOINT [ "/bin/bash" ]
